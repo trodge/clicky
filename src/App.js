@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import ImageSet from './ImageSet.js';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+    state = {
+        score: 0,
+        highScore: 0
+    };
+    setScore = score => {
+        if (score === undefined) score = this.state.score + 1;
+        this.setState({score : score, highScore: Math.max(this.state.highScore, score)})
+    }
+    render() {
+        const { score, highScore } = this.state;
+        return <div className="App" >
+            <header className="App-header">
+                <h1>Don't click the same image twice</h1>
+                Score: {score} | High Score: {highScore}
+            </header>
+            <ImageSet setScore={this.setScore} />
+        </div>;
+    }
 }
-
-export default App;
