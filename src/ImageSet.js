@@ -13,7 +13,7 @@ export default class ImageSet extends Component {
     render() {
         return <div className="ImageSet">
             {this.state.order.map(i =>
-                <img alt={this.state.alts[i]} src={`/images/${(i + 1).toString().padStart(2, '0')}.jpg`}
+                <img alt={this.state.alts[i]} src={`images/${(i + 1).toString().padStart(2, '0')}.jpg`}
                     onClick={() => {
                         let { order, clicked } = this.state;
                         if (clicked[i]) {
